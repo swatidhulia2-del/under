@@ -1,6 +1,7 @@
 /* ============================================
    Apple-Inspired Design System
    Premium, Minimal, Elegant
+   Mobile-First Optimized
    ============================================ */
 
 /* CSS Reset & Base */
@@ -20,12 +21,27 @@
     --accent-pink: #ff375f;
     --glass-bg: rgba(29, 29, 31, 0.72);
     --glass-border: rgba(255, 255, 255, 0.08);
+
+    /* Mobile-first spacing */
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 1.5rem;
+    --spacing-lg: 2rem;
+    --spacing-xl: 3rem;
+
+    /* Safe areas for notched devices */
+    --safe-top: env(safe-area-inset-top, 0px);
+    --safe-bottom: env(safe-area-inset-bottom, 0px);
+    --safe-left: env(safe-area-inset-left, 0px);
+    --safe-right: env(safe-area-inset-right, 0px);
 }
 
 html {
     font-size: 16px;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
 }
 
 body {
@@ -33,9 +49,14 @@ body {
     background-color: var(--bg-primary);
     color: var(--text-primary);
     min-height: 100vh;
+    min-height: -webkit-fill-available;
     display: flex;
     flex-direction: column;
     overflow-x: hidden;
+    padding-top: var(--safe-top);
+    padding-bottom: var(--safe-bottom);
+    padding-left: var(--safe-left);
+    padding-right: var(--safe-right);
 }
 
 /* Animated Gradient Background */
@@ -51,6 +72,7 @@ body {
         radial-gradient(ellipse 50% 30% at 50% 80%, rgba(255, 55, 95, 0.08), transparent);
     z-index: 0;
     animation: gradientShift 15s ease-in-out infinite alternate;
+    pointer-events: none;
 }
 
 @keyframes gradientShift {
@@ -64,42 +86,47 @@ body {
     }
 }
 
-/* Main Container */
+/* Main Container - Mobile First */
 .container {
     flex: 1;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 4rem 2rem;
+    padding: var(--spacing-lg) var(--spacing-sm);
     position: relative;
     z-index: 1;
 }
 
 .content {
+    width: 100%;
     max-width: 680px;
     text-align: center;
+    padding: 0 var(--spacing-xs);
 }
 
-/* Typography - Apple Style */
+/* Typography - Mobile First */
 .eyebrow {
-    font-size: 0.875rem;
-    font-weight: 500;
-    letter-spacing: 0.08em;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
     color: var(--accent-blue);
-    margin-bottom: 1.5rem;
+    margin-bottom: var(--spacing-sm);
     opacity: 0;
     animation: fadeInUp 0.8s ease forwards;
 }
 
 .headline {
-    font-size: clamp(2.5rem, 8vw, 5rem);
+    font-size: 2.25rem;
     font-weight: 700;
-    line-height: 1.05;
-    letter-spacing: -0.03em;
-    margin-bottom: 1.5rem;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: var(--spacing-sm);
     opacity: 0;
     animation: fadeInUp 0.8s ease 0.2s forwards;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
 }
 
 .gradient-text {
@@ -107,65 +134,82 @@ body {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    display: inline-block;
 }
 
 .subheadline {
-    font-size: 1.25rem;
+    font-size: 1rem;
     font-weight: 400;
     color: var(--text-secondary);
-    line-height: 1.5;
-    max-width: 480px;
-    margin: 0 auto 3rem;
+    line-height: 1.6;
+    max-width: 100%;
+    margin: 0 auto var(--spacing-lg);
     opacity: 0;
     animation: fadeInUp 0.8s ease 0.4s forwards;
+    padding: 0 var(--spacing-xs);
 }
 
-/* Email Notify Section */
+/* Email Notify Section - Mobile Optimized */
 .notify-section {
     opacity: 0;
     animation: fadeInUp 0.8s ease 0.6s forwards;
+    width: 100%;
 }
 
 .input-wrapper {
     display: flex;
-    gap: 0.75rem;
-    max-width: 420px;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+    width: 100%;
+    max-width: 100%;
     margin: 0 auto;
-    padding: 0.5rem;
+    padding: var(--spacing-xs);
     background: var(--glass-bg);
     border: 1px solid var(--glass-border);
-    border-radius: 980px;
+    border-radius: 1rem;
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
 }
 
 .email-input {
-    flex: 1;
+    width: 100%;
     background: transparent;
     border: none;
-    padding: 0.875rem 1.25rem;
-    font-size: 1rem;
+    padding: 1rem;
+    font-size: 16px; /* Prevents iOS zoom on focus */
     font-family: inherit;
     color: var(--text-primary);
     outline: none;
+    text-align: center;
+    border-radius: 0.75rem;
+    -webkit-appearance: none;
+    appearance: none;
 }
 
 .email-input::placeholder {
     color: var(--text-secondary);
 }
 
+.email-input:focus {
+    background: rgba(255, 255, 255, 0.05);
+}
+
 .notify-btn {
+    width: 100%;
     background: var(--text-primary);
     color: var(--bg-primary);
     border: none;
-    padding: 0.875rem 1.75rem;
-    font-size: 0.9375rem;
+    padding: 1rem 1.5rem;
+    font-size: 1rem;
     font-weight: 600;
     font-family: inherit;
-    border-radius: 980px;
+    border-radius: 0.75rem;
     cursor: pointer;
     transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
     white-space: nowrap;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+    min-height: 48px; /* Touch-friendly minimum */
 }
 
 .notify-btn:hover {
@@ -175,63 +219,63 @@ body {
 
 .notify-btn:active {
     transform: scale(0.98);
+    background: #e0e0e0;
 }
 
-/* Footer - Frosted Glass */
+/* Footer - Mobile First */
 .footer {
     position: relative;
     z-index: 1;
-    padding: 0 1.5rem 1.5rem;
+    padding: 0 var(--spacing-sm) var(--spacing-sm);
 }
 
 .footer-glass {
     background: var(--glass-bg);
     border: 1px solid var(--glass-border);
-    border-radius: 1.5rem;
-    padding: 2.5rem;
+    border-radius: 1rem;
+    padding: var(--spacing-md);
     backdrop-filter: blur(40px);
     -webkit-backdrop-filter: blur(40px);
 }
 
 .footer-content {
     display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    flex-wrap: wrap;
-    gap: 2rem;
-    margin-bottom: 2rem;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
 }
 
 .footer-brand {
-    flex: 1;
-    min-width: 200px;
+    text-align: center;
 }
 
 .footer-logo {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     font-weight: 600;
     letter-spacing: -0.02em;
     display: block;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.375rem;
 }
 
 .footer-tagline {
-    font-size: 0.875rem;
+    font-size: 0.8125rem;
     color: var(--text-secondary);
 }
 
 .footer-links {
     display: flex;
-    gap: 4rem;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    text-align: center;
 }
 
 .footer-column h4 {
-    font-size: 0.75rem;
+    font-size: 0.6875rem;
     font-weight: 600;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
     color: var(--text-secondary);
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
 }
 
 .footer-column a {
@@ -239,22 +283,25 @@ body {
     font-size: 0.9375rem;
     color: var(--text-primary);
     text-decoration: none;
-    margin-bottom: 0.625rem;
+    margin-bottom: 0.5rem;
+    padding: 0.375rem 0;
     transition: color 0.2s ease;
+    -webkit-tap-highlight-color: transparent;
 }
 
-.footer-column a:hover {
+.footer-column a:hover,
+.footer-column a:active {
     color: var(--accent-blue);
 }
 
 .footer-bottom {
-    padding-top: 1.5rem;
+    padding-top: var(--spacing-sm);
     border-top: 1px solid var(--glass-border);
     text-align: center;
 }
 
 .footer-bottom p {
-    font-size: 0.8125rem;
+    font-size: 0.75rem;
     color: var(--text-secondary);
 }
 
@@ -262,7 +309,7 @@ body {
 @keyframes fadeInUp {
     from {
         opacity: 0;
-        transform: translateY(30px);
+        transform: translateY(20px);
     }
     to {
         opacity: 1;
@@ -270,72 +317,161 @@ body {
     }
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
+/* ============================================
+   Tablet Breakpoint (768px+)
+   ============================================ */
+@media (min-width: 768px) {
+    :root {
+        --spacing-lg: 3rem;
+        --spacing-xl: 4rem;
+    }
+
     .container {
-        padding: 3rem 1.5rem;
+        padding: var(--spacing-xl) var(--spacing-lg);
+    }
+
+    .eyebrow {
+        font-size: 0.875rem;
+        margin-bottom: var(--spacing-md);
     }
 
     .headline {
-        font-size: clamp(2rem, 10vw, 3.5rem);
+        font-size: 3.5rem;
+        letter-spacing: -0.03em;
+        margin-bottom: var(--spacing-md);
     }
 
     .subheadline {
-        font-size: 1.0625rem;
-        margin-bottom: 2.5rem;
+        font-size: 1.25rem;
+        max-width: 480px;
+        margin-bottom: var(--spacing-xl);
     }
 
     .input-wrapper {
-        flex-direction: column;
-        border-radius: 1.25rem;
-        padding: 0.375rem;
+        flex-direction: row;
+        gap: 0.75rem;
+        max-width: 420px;
+        padding: 0.5rem;
+        border-radius: 980px;
     }
 
     .email-input {
-        text-align: center;
-        padding: 1rem;
+        flex: 1;
+        text-align: left;
+        padding: 0.875rem 1.25rem;
     }
 
     .notify-btn {
-        width: 100%;
-        padding: 1rem;
+        width: auto;
+        padding: 0.875rem 1.75rem;
+        border-radius: 980px;
+    }
+
+    .footer {
+        padding: 0 var(--spacing-md) var(--spacing-md);
     }
 
     .footer-glass {
-        padding: 1.75rem;
-        border-radius: 1.25rem;
+        padding: var(--spacing-lg);
+        border-radius: 1.5rem;
     }
 
     .footer-content {
-        flex-direction: column;
-        gap: 1.5rem;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
+    }
+
+    .footer-brand {
+        text-align: left;
+        flex: 1;
+    }
+
+    .footer-logo {
+        font-size: 1.5rem;
     }
 
     .footer-links {
-        gap: 2rem;
+        flex-direction: row;
+        gap: 3rem;
+        text-align: left;
+    }
+}
+
+/* ============================================
+   Desktop Breakpoint (1024px+)
+   ============================================ */
+@media (min-width: 1024px) {
+    .headline {
+        font-size: 4.5rem;
+    }
+
+    .subheadline {
+        font-size: 1.375rem;
+    }
+
+    .footer-links {
+        gap: 4rem;
+    }
+}
+
+/* ============================================
+   Large Desktop (1440px+)
+   ============================================ */
+@media (min-width: 1440px) {
+    .headline {
+        font-size: 5rem;
+    }
+}
+
+/* ============================================
+   Landscape Mobile
+   ============================================ */
+@media (max-width: 896px) and (orientation: landscape) {
+    .container {
+        padding: var(--spacing-sm);
+        min-height: auto;
+    }
+
+    .headline {
+        font-size: 1.75rem;
+    }
+
+    .subheadline {
+        margin-bottom: var(--spacing-sm);
+    }
+
+    .footer-glass {
+        padding: var(--spacing-sm);
+    }
+
+    .footer-content {
+        flex-direction: row;
         flex-wrap: wrap;
     }
 }
 
-@media (max-width: 480px) {
-    .footer {
-        padding: 0 1rem 1rem;
-    }
-
-    .footer-links {
-        flex-direction: column;
-        gap: 1.5rem;
-    }
-}
-
-/* High-DPI Displays */
+/* ============================================
+   High-DPI Displays
+   ============================================ */
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
     body {
         -webkit-font-smoothing: subpixel-antialiased;
     }
 }
 
-/* Reduced Motion */
+/* ============================================
+   Dark Mode Support (already dark, but for system)
+   ============================================ */
+@media (prefers-color-scheme: dark) {
+    :root {
+        color-scheme: dark;
+    }
+}
+
+/* ============================================
+   Reduced Motion
+   ============================================ */
 @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
         animation-duration: 0.01ms !important;
@@ -345,5 +481,19 @@ body {
 
     .gradient-bg {
         animation: none;
+    }
+}
+
+/* ============================================
+   Touch Device Optimizations
+   ============================================ */
+@media (hover: none) and (pointer: coarse) {
+    .notify-btn:hover {
+        transform: none;
+        box-shadow: none;
+    }
+
+    .footer-column a {
+        padding: 0.5rem 0;
     }
 }
