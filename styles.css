@@ -222,6 +222,27 @@ body {
     background: #e0e0e0;
 }
 
+.notify-btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+/* Form Messages */
+.form-message {
+    margin-top: var(--spacing-sm);
+    font-size: 0.875rem;
+    text-align: center;
+    min-height: 1.5rem;
+}
+
+.form-message.success {
+    color: #30d158;
+}
+
+.form-message.error {
+    color: var(--accent-pink);
+}
+
 /* Footer - Mobile First */
 .footer {
     position: relative;
