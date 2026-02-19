@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="no">
+<html lang="sv">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=5">
-    <meta name="description" content="Noe ekstraordinært er på vei. Følg med.">
+    <meta name="description" content="Något extraordinärt är på väg. Håll utkik.">
     <meta name="theme-color" content="#000000">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -21,16 +21,16 @@
         <div class="content">
             <p class="eyebrow">Kommer Snart</p>
             <h1 class="headline">
-                Noe<br>
-                <span class="gradient-text">ekstraordinært</span><br>
-                er på vei.
+                Något<br>
+                <span class="gradient-text">extraordinärt</span><br>
+                är på väg.
             </h1>
-            <p class="subheadline">Vi skaper noe spesielt. Vær den første som får vite når vi lanserer.</p>
+            <p class="subheadline">Vi skapar något speciellt. Bli först att få veta när vi lanserar.</p>
 
             <div class="notify-section">
                 <form action="https://formspree.io/f/xbdakzly" method="POST" class="input-wrapper" id="notify-form">
-                    <input type="email" name="email" placeholder="Skriv inn e-posten din" class="email-input" required>
-                    <button type="submit" class="notify-btn">Varsle Meg</button>
+                    <input type="email" name="email" placeholder="Ange din e-post" class="email-input" required>
+                    <button type="submit" class="notify-btn">Meddela Mig</button>
                 </form>
                 <p class="form-message" id="form-message"></p>
             </div>
@@ -42,7 +42,7 @@
                 form.addEventListener('submit', async (e) => {
                     e.preventDefault();
                     const btn = form.querySelector('button');
-                    btn.textContent = 'Sender...';
+                    btn.textContent = 'Skickar...';
                     btn.disabled = true;
 
                     try {
@@ -53,18 +53,18 @@
                         });
 
                         if (response.ok) {
-                            message.textContent = 'Takk! Vi varsler deg når vi lanserer.';
+                            message.textContent = 'Tack! Vi meddelar dig när vi lanserar.';
                             message.className = 'form-message success';
                             form.reset();
                         } else {
-                            throw new Error('Noe gikk galt');
+                            throw new Error('Något gick fel');
                         }
                     } catch (error) {
-                        message.textContent = 'Beklager, noe gikk galt. Prøv igjen.';
+                        message.textContent = 'Tyvärr, något gick fel. Försök igen.';
                         message.className = 'form-message error';
                     }
 
-                    btn.textContent = 'Varsle Meg';
+                    btn.textContent = 'Meddela Mig';
                     btn.disabled = false;
                 });
             </script>
@@ -76,7 +76,7 @@
             <div class="footer-content">
                 <div class="footer-brand">
                     <span class="footer-logo">Stoppafusket</span>
-                    <p class="footer-tagline">Gravejournalistikk som betyr noe</p>
+                    <p class="footer-tagline">Grävande journalistik som betyder något</p>
                 </div>
                 <div class="footer-links">
                     <div class="footer-column">
@@ -85,13 +85,13 @@
                         <a href="mailto:thomas@stoppafusket.se">thomas@stoppafusket.se</a>
                     </div>
                     <div class="footer-column">
-                        <h4>Koble Til</h4>
-                        <a href="https://www.stoppafusket.se/" target="_blank" rel="noopener noreferrer">Besøk Nettsted</a>
+                        <h4>Anslut</h4>
+                        <a href="https://www.stoppafusket.se/" target="_blank" rel="noopener noreferrer">Besök Webbplats</a>
                     </div>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2026 Stoppafusket. Alle rettigheter reservert.</p>
+                <p>&copy; 2026 Stoppafusket. Alla rättigheter förbehållna.</p>
             </div>
         </div>
     </footer>
